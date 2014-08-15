@@ -63,7 +63,7 @@
         }
       },
       textEntered: function() {
-        this._model.create(this._text.value);
+        this._model.create(encodeURIComponent(this._text.value));
       },
       _getCallbackFunction: function(name) {
         var me = this;

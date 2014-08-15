@@ -65,8 +65,6 @@
       },
       textEntered: function() {
         this._model.create(this._text.value);
-        this._text.value = "";
-        this._text.blur();
       },
       _getCallbackFunction: function(name) {
         var me = this;
@@ -97,18 +95,6 @@
       _click: function(event) {
         event.preventDefault();
         this.textEntered();
-      },
-      _focus: function() {
-        if (this._text.value === this._model.default.text) {
-          this._text.value = "";
-          this._text.style.color = '#000';
-        }
-      },
-      _blur: function() {
-        if (this._text.value === "") {
-          this._text.style.color = '#969696';
-          this._text.value = this._model.default.text;
-        }
       },
       _checked: function(event) {
         var target = event.target || event.srcElement;

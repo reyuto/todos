@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Box:Todo</title>
-  <link rel="stylesheet" type="text/css" href="todo.css">
+    <title>Todo Page</title>
+    <link rel="stylesheet" type="text/css" href="common.css">
 </head>
-<body onload="initiate()">
-<div class="content">
-  <img src="logo.png" width="295" height="144" />
-  <div class="form">
-    <label for="text">Enter a Task: </label>
-    <input id="text" name="text" type="text" style="width:200px;" />
-    <input type="submit" value="Add" />
-  </div>
-  <ul id="todos" class="todos">
-    <li class="todo"><input type="checkbox" id="1" /><label for="1">Pick up milk</label></li>
-  </ul>
-</div>
-<script type="text/javascript" src="todo.js"></script>
-<script type="text/javascript">
-  function initiate() {
-    var todo = new TODO();
-  }
-</script>
+<body onload="initialize();">
+    <div class="content">
+        <img src="box.png" alt="www.box.com" title="www.box.com" />
+        <div class="todo-form">
+            <label for="text">Enter the task :</label>
+            <input id="text" type="text" value="What would you want to do?" />
+            <input id="button" type="button" value="Add" />
+        </div>
+        <ul id="todos" class="todos">
+            
+        </ul>
+    </div>
+    <script type="text/javascript" src="todo.js"></script>
+    <script type="text/javascript">
+        function initialize() {
+            window.TODO.initialize();
+        }
+    </script>
 </body>
 </html>

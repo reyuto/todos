@@ -1,11 +1,10 @@
 ;(function() {
 
   // polyfill the function prototype
-  var EXTEND = Function.prototype.extend;
-  Function.prototype.extend = EXTEND || function(augmentations) {
+  var EXTEND = Function.prototype.extend || function(that, augmentations) {
     for (prop in augmentations) {
       if (augmentations.hasOwnProperty(prop)) {
-        this.prototype[prop] = augmentations[prop];
+        that.prototype[prop] = augmentations[prop];
       }
     }
   }
@@ -34,7 +33,7 @@
     this._model = model;
   }
   
-  TodoView.extend(function() {
+  EXTEND(TodoView, function() {
     var ENTER = '13';
 
     return {
@@ -111,7 +110,7 @@
   var CREATED = 'todo-created';
   var RECIEVED = 'todos-recieved';
   var EDITED = 'todo-edited';
-  todoModel.extend({
+  EXTEND(todoModel, {
     default: {
       text: "What would you want to do?"
     },
@@ -159,7 +158,7 @@
     this._urlBase = urlbase;
   }
 
-  todoService.extend({
+  EXTEND(todoService, {
     get: function(url, eventname) {
       var xhr = new XMLHttpRequest();
       xhr.open("GET", this._urlBase+url, true);
@@ -193,12 +192,5 @@
   var service = new todoService('http://localhost:9898/todo/tasks');
   var model = new todoModel(service);
   window.TODO = new TodoView(model);
-
-  // reset the function prototype
-  if (typeof EXTEND == 'undefined') {
-    delete Function.prototype.extend;
-  } else {
-    Function.prototype.extend = EXTEND;
-  }
-
+  
 })();
